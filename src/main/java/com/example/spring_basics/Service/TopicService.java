@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 @Service
 public class TopicService {
@@ -30,9 +29,18 @@ public class TopicService {
     }
 
 
+    public void updateTopic(String id, Topic topic) {
 
-    public void deleteTopic(String id) {
-
+        for (int i = 0; i < topics.size(); i++) {
+            Topic t = topics.get(i);
+            if (t.getId().equals(id)) {
+                topics.set(i, topic);
+                return;
+            }
+        }
     }
 
+    public void remove(String id) {
+        topics.removeIf(topic -> topic.getId().equals(id));
+    }
 }
